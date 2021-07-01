@@ -13,6 +13,7 @@
 		D0673EFF268CF17A0022822D /* RemoteAddAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0673EFE268CF17A0022822D /* RemoteAddAccountTests.swift */; };
 		D0673F09268CF1E50022822D /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0673EE0268CEEBC0022822D /* Domain.framework */; };
 		D0673F0A268CF1E50022822D /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0673EE0268CEEBC0022822D /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D07A184B268E35A300DFA37F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A184A268E35A300DFA37F /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		D0673EF9268CF17A0022822D /* DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0673EFE268CF17A0022822D /* RemoteAddAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddAccountTests.swift; sourceTree = "<group>"; };
 		D0673F00268CF17A0022822D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D07A184A268E35A300DFA37F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				D0673EE3268CEEBC0022822D /* Info.plist */,
 				D0673EE8268CEF7A0022822D /* AddAccount.swift */,
 				D0673EEA268CF0EB0022822D /* AccountModel.swift */,
+				D07A184A268E35A300DFA37F /* Model.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07A184B268E35A300DFA37F /* Model.swift in Sources */,
 				D0673EE9268CEF7A0022822D /* AddAccount.swift in Sources */,
 				D0673EEB268CF0EB0022822D /* AccountModel.swift in Sources */,
 			);
