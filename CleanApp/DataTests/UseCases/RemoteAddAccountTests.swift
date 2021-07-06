@@ -30,11 +30,27 @@ class RemoteAddAccountTests: XCTestCase {
         sut.add(addAccountModel: makeAddAccountModel()) { result in
             switch result {
             case .failure(let error): XCTAssertEqual(error, .unexpected)
-            case .success(_): XCTFail("Expected error receive \(result) instead")
+            case .success(_): XCTFail("Expected error received \(result) instead")
             }
             exp.fulfill()
         }
         httpClientSpy.completeWithError(.noConnectivity)
+        wait(for: [exp], timeout: 1)
+    }
+    
+    func test_add_should_complete_with_account_if_cllient_completes_with_data() {
+        let (sut, httpClientSpy) = makeSut()
+        let exp = expectation(description: "waiting")
+        let expectedAccount = makeAccountModel()
+        sut.add(addAccountModel: makeAddAccountModel()) { result in
+            switch result {
+            case .failure: XCTFail("Expected error received \(result) instead")
+            case .success(let receveidAccount): XCTAssertEqual(receveidAccount, expectedAccount)
+            }
+            exp.fulfill()
+        }
+        
+        httpClientSpy.completeWithData(expectedAccount.toData()!)
         wait(for: [exp], timeout: 1)
     }
 }
@@ -42,6 +58,10 @@ class RemoteAddAccountTests: XCTestCase {
 extension RemoteAddAccountTests {
     func makeAddAccountModel() -> AddAccountModel {
         return AddAccountModel(name: "any_name", email: "any_email", password: "any_password", passwordConfirmation: "any_password")
+    }
+    
+    func makeAccountModel() -> AccountModel {
+        return AccountModel(id: "any_id", name: "any_name", email: "any_email", password: "any_password")
     }
     func makeSut(url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteAddAccount, httpClient: HttpClientSpy){
         let httpClientSpy = HttpClientSpy()
@@ -62,6 +82,10 @@ extension RemoteAddAccountTests {
         
         func completeWithError(_ error: HttpError) {
             completion?(.failure(error))
+        }
+        
+        func completeWithData(_ data: Data) {
+            completion?(.success(data))
         }
     }
 }
